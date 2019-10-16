@@ -25,18 +25,26 @@ This method is based on installing Ubuntu Server and then replacing the firmware
 
 https://jamesachambers.com/raspberry-pi-ubuntu-server-18-04-2-installation-guide/
 
-1. Get image from:
+1. Downlaod image from:
 http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img.xz
 
-2. Unpack and burn into SD Card:
+2. Unpack and burn into SD Card.
+Here are instructions for Ubuntu/Debian based machine, if you use other OS, please use appropriate steps.
+You need to replace /dev/sdx at the end of last command with appropriate device for your SD Card. 
+You can find it out using gparted, which will show all available devices on your computer.
+Please be very careful with this command as it will overwrite your disk. 
 
 ```
 xz -d ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img.xz
+sudo apt install gddrescue
 sudo ddrescue -D --force ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img /dev/sdx
 ```
+
+3. Install firmware from Raspbian.
+
 Insert/mount the micro SD card in your computer and navigate to the “boot” partition. Delete everything in the existing folder so it is completely empty.
 
-3. Download firmware from:
+Download firmware from:
 
 https://github.com/raspberrypi/firmware/archive/master.zip
 
@@ -45,7 +53,7 @@ The latest firmware is everything inside master.zip “boot” folder (including
 
 4. Create/Update config.txt and cmdline.txt
 
-Navigate to the micro SD /boot/ partition. Create a blank cmdline.txt file with the following line:
+Navigate to the micro SD /boot/ partition. Create a cmdline.txt file with the following line:
 
 ```
 dwc_otg.fiq_fix_enable=2 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait rootflags=noload net.ifnames=0
