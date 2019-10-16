@@ -91,6 +91,7 @@ sudo make
 This will take an hour or so. It may ask some questions, so monitor the process.
 
 6. Update firmware
+
 Finally, you may want to update the firmware and install modules:
 ```
 sudo make update_firmware
@@ -100,4 +101,3 @@ sudo make update_firmware
 
 1. Server version of Ubuntu has LXD and cloud software  which is not needed so it is removed
 2. Random number generator is taking a lot of time during the boot so "haveged" random generator is installed as part of the installer script
-3. Wifi and logitech wireless mouse/keyboard are not working. Need to install raspbian drivers
