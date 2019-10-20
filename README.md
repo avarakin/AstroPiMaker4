@@ -1,7 +1,7 @@
 # Introduction
 
 This project contains instructions and Makefile for setting up a Raspberry Pi 4 as an Astrophotography computer.
-Ubuntu Server is used as a starting point.
+Ubuntu Server 19.10 is used as a starting point.
 Why using makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
 
 # List of features:
@@ -21,9 +21,6 @@ Not implemented yet:
 2. Configures the onboard serial port for controlling an external device
 
 # Installation
-This method is based on installing Ubuntu Server and then replacing the firmware by Raspbian firmware and is based on the following instructions:
-
-https://jamesachambers.com/raspberry-pi-ubuntu-server-18-04-2-installation-guide/
 
 1. Downlaod image from:
 http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
@@ -42,40 +39,8 @@ xz -d ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
 sudo ddrescue -D --force ubuntu-19.10-preinstalled-server-armhf+raspi3.img /dev/xxxx
 ```
 
-3. Install firmware from Raspbian.
 
-Insert/mount the micro SD card in your computer and navigate to the “boot” partition. Delete everything in the existing folder so it is completely empty.
-
-Download firmware from:
-
-https://github.com/raspberrypi/firmware/archive/master.zip
-
-The latest firmware is everything inside master.zip “boot” folder (including subfolders). We want to extract everything from “boot” (including subfolders) to our micro SD’s “boot” partition that we just emptied in the previous step. Don’t forget to get the “overlays” folder as that contains overlays necessary to boot correctly.
-
-
-4. Create/Update config.txt and cmdline.txt
-
-Navigate to the micro SD /boot/ partition. Create a cmdline.txt file with the following line:
-
-```
-dwc_otg.fiq_fix_enable=2 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p2 rootfstype=ext4 rootwait rootflags=noload net.ifnames=0
-```
-
-Next we are going to create config.txt with the following content:
-
-```
-## Enable audio (loads snd_bcm2835)
-dtparam=audio=on
-[pi4]
-[all]
-hdmi_force_hotplug=1
-hdmi_ignore_edid=0xa5000080
-hdmi_group=2
-hdmi_mode=82
-disable_overscan=1
-```
-
-5. Final steps
+3. Connect to Pi
 
 Connect Ethernet cable, put in the card into RPI and boot.
 
@@ -87,7 +52,7 @@ nmap -p 22 --open -sV 192.168.200.0/24
 ```
 
 
-Once you identify IP or RPI,  login into it using ssh, with user/password : ubuntu/ubuntu, e.g.:
+Once you identify IP of your RPI,  login into it using ssh, with user/password : ubuntu/ubuntu, e.g.:
 
 ```
 ssh ubuntu@192.168.200.100
@@ -95,7 +60,9 @@ ssh ubuntu@192.168.200.100
 
 It will ask to change the password.
 
- and then run the following commands
+4. Install the software
+
+Run the following commands:
 
 ```
 sudo apt update
@@ -105,15 +72,13 @@ cd AstroPiMaker4
 sudo make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
+At some point it will ask to select Display Manager. You need to chose lightdm.
 
-6. Update firmware
+5. Enable Wireless Access Point
 
-Finally, you may want to update the firmware and install modules:
+Run command:
+
 ```
-sudo make update_firmware
+make wap
 ```
 
-## Notes
-
-1. Server version of Ubuntu has LXD and cloud software  which is not needed so it is removed
-2. Random number generator is taking a lot of time during the boot so "haveged" random generator is installed as part of the installer script
