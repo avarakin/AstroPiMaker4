@@ -69,7 +69,7 @@ sudo apt update
 sudo apt install -y git make
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
-sudo make
+make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
 At some point it will ask to select Display Manager. You need to chose lightdm.
