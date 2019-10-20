@@ -26,22 +26,20 @@ This method is based on installing Ubuntu Server and then replacing the firmware
 https://jamesachambers.com/raspberry-pi-ubuntu-server-18-04-2-installation-guide/
 
 1. Downlaod image from:
-http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img.xz
-
 http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
 
 
 2. Unpack and burn image into SD Card.
 
 Here are the instructions for Ubuntu/Debian based PC. If you are using other OS, please use appropriate steps.
-You need to replace /dev/sdx at the end of last command with appropriate device for your SD Card. 
+You need to replace /dev/xxxx at the end of last command with appropriate device for your SD Card. 
 You can find it out using gparted, which will show all available devices on your computer.
 *Please be very careful with this command as it will overwrite the disk without any prompts.*
 
 ```
-xz -d ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img.xz
-sudo apt install gddrescue
-sudo ddrescue -D --force ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img /dev/sdx
+sudo apt install gddrescue xz-utils
+xz -d ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
+sudo ddrescue -D --force ubuntu-19.10-preinstalled-server-armhf+raspi3.img /dev/xxxx
 ```
 
 3. Install firmware from Raspbian.
