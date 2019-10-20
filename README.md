@@ -78,6 +78,14 @@ disable_overscan=1
 5. Final steps
 
 Connect Ethernet cable, put in the card into RPI and boot.
+
+Once green networking LED starts blinking, you can try to find the RPI on the network using nmap.
+Replace 192.168.200.0 by your network's subnet:
+
+```
+nmap -p 22 --open -sV 192.168.200.0/24
+```
+
 It may take up to 10 minutes to boot, especially if mouse is not connected, so be patient.
 Once Raspberry is running, connect to it using ssh, with user/password : ubuntu/ubuntu
  and then run the following commands
@@ -85,8 +93,8 @@ Once Raspberry is running, connect to it using ssh, with user/password : ubuntu/
 ```
 sudo apt remove flash-kernel initramfs-tools
 sudo apt-get install git make
-git clone https://github.com/avarakin/AstroPi4.git
-cd AstroPi4
+git clone https://github.com/avarakin/AstroPiMaker4.git
+cd AstroPiMaker4
 sudo make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
