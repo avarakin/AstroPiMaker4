@@ -3,40 +3,32 @@ pi4: update utils speedup display desktop indi_kstars ccdciel_skychart phd vnc g
 
 
 update:
-	sudo apt update && apt -y upgrade
+	sudo apt update
+	sudo apt -y upgrade
 	sudo apt -y purge unattended-upgrades
 	
 
 #install general utilities
 utils :
-	sudo apt -y install net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina
-
-#Keep in mind that this will install snapd which slows down startup
-chrome :
-	sudo apt -y install chromium-browser
+	sudo apt -y install net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
 
 display :
-	sudo echo [all] > /boot/firmware/usercfg.txt
-	sudo echo hdmi_force_hotplug=1 >> /boot/firmware/usercfg.txt
-	sudo echo hdmi_ignore_edid=0xa5000080 >> /boot/firmware/usercfg.txt
-	sudo echo hdmi_group=2 >> /boot/firmware/usercfg.txt
-	sudo echo hdmi_mode=82 >> /boot/firmware/usercfg.txt
-	sudo echo disable_overscan=1 >> /boot/firmware/usercfg.txt
+	sudo sh -c "echo '[all]' > /boot/firmware/usercfg.txt"
+	sudo sh -c "echo 'hdmi_force_hotplug=1' >> /boot/firmware/usercfg.txt"
+	sudo sh -c "echo 'hdmi_ignore_edid=0xa5000080' >> /boot/firmware/usercfg.txt"
+	sudo sh -c "echo 'hdmi_group=2' >> /boot/firmware/usercfg.txt"
+	sudo sh -c "echo 'hdmi_mode=82' >> /boot/firmware/usercfg.txt"
+	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
 
 
 desktop :
 	sudo apt -y install kde-plasma-desktop plasma-nm  lightdm
 
 speedup :
-	sudo apt purge snapd
-	sudo apt purge cloud-init
+	sudo apt -y purge cloud-init
 	sudo rm -rf /etc/cloud/
 	sudo rm -rf /var/lib/cloud/
-	sudo apt -y install haveged
-	sudo systemctl enable haveged
 
-#	#fix wireless
-#	sudo sed -i "s:0x48200100:0x44200100:g" /lib/firmware/brcm/brcmfmac43455-sdio.txt
 
 mate-desktop :
 	sudo apt -y install mate-desktop-environment lightdm
@@ -55,8 +47,7 @@ astrometry :
 #install ccdciel and skychart
 ccdciel_skychart :
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA716FC2
-	echo "deb http://www.ap-i.net/apt unstable main" > /tmp/1.tmp
-	sudo cp /tmp/1.tmp /etc/apt/sources.list.d/skychart.list
+	sudo sh -c "echo 'deb http://www.ap-i.net/apt unstable main' > /etc/apt/sources.list.d/skychart.list"
 	sudo apt update
 	sudo apt -y install ccdciel skychart
 
@@ -64,7 +55,8 @@ ccdciel_skychart :
 #install phd2
 phd :
 	sudo add-apt-repository -y  ppa:pch/phd2
-	sudo apt update && apt -y install phd2 phdlogview
+	sudo apt update
+	sudo apt -y install phd2 phdlogview
 
 
 #create a sample INDI startup shell script
@@ -82,12 +74,11 @@ wap :
 	sudo sh -c "echo 'nameserver 8.8.8.8' > /etc/resolv.conf"
 	sudo chattr -e /etc/resolv.conf
 	sudo chattr +i /etc/resolv.conf
-	sudo echo  127.0.0.1 ubuntu >> /etc/hosts
+	sudo sh -c "echo  '127.0.0.1 ubuntu' >> /etc/hosts"
 #install hostapd, dnsmasq and create_ap
 	sudo apt -y install hostapd dnsmasq make
 	git clone https://github.com/oblique/create_ap
-	cd create_ap
-	sudo make install
+	cd create_ap && sudo make install
 	#configure access point id and password
 	sudo sed -i.bak 's/SSID=MyAccessPoint/SSID=RPI/'  /etc/create_ap.conf 
 	sudo sed -i.bak 's/PASSPHRASE=12345678/PASSPHRASE=password/'  /etc/create_ap.conf 
@@ -96,18 +87,17 @@ wap :
 	sudo systemctl status create_ap
 	echo It would be a good idea to reboot now!
 
-
 #configure x11vnc 
 VNC=/lib/systemd/system/x11vnc.service
 vnc :
-	sudo echo [Unit] > $(VNC)
-	sudo echo Description=Start x11vnc at startup. >> $(VNC)
-	sudo echo After=multi-user.target >> $(VNC)
-	sudo echo [Service]>> $(VNC)
-	sudo echo Type=simple>> $(VNC)
-	sudo echo ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared>> $(VNC)
-	sudo echo [Install]>> $(VNC)
-	sudo echo WantedBy=multi-user.target>> $(VNC)
+	sudo sh -c "echo '[Unit]' > $(VNC)"
+	sudo sh -c "echo 'Description=Start x11vnc at startup.' >> $(VNC)"
+	sudo sh -c "echo 'After=multi-user.target' >> $(VNC)"
+	sudo sh -c "echo '[Service]'>> $(VNC)"
+	sudo sh -c "echo 'Type=simple'>> $(VNC)"
+	sudo sh -c "echo 'ExecStart=/usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /etc/x11vnc.pass -rfbport 5900 -shared'>> $(VNC)"
+	sudo sh -c "echo '[Install]'>> $(VNC)"
+	sudo sh -c "echo 'WantedBy=multi-user.target'>> $(VNC)"
 	sudo x11vnc -storepasswd /etc/x11vnc.pass
 	sudo systemctl enable x11vnc.service
 	sudo systemctl start x11vnc.service
