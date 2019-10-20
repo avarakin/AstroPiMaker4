@@ -28,6 +28,9 @@ https://jamesachambers.com/raspberry-pi-ubuntu-server-18-04-2-installation-guide
 1. Downlaod image from:
 http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.3-preinstalled-server-armhf+raspi3.img.xz
 
+http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
+
+
 2. Unpack and burn image into SD Card.
 
 Here are the instructions for Ubuntu/Debian based PC. If you are using other OS, please use appropriate steps.
