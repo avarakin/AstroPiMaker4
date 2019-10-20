@@ -86,13 +86,20 @@ Replace 192.168.200.0 by your network's subnet:
 nmap -p 22 --open -sV 192.168.200.0/24
 ```
 
-It may take up to 10 minutes to boot, especially if mouse is not connected, so be patient.
-Once Raspberry is running, connect to it using ssh, with user/password : ubuntu/ubuntu
+
+Once you identify IP or RPI,  login into it using ssh, with user/password : ubuntu/ubuntu, e.g.:
+
+```
+ssh ubuntu@192.168.200.100
+```
+
+It will ask to change the password.
+
  and then run the following commands
 
 ```
-sudo apt remove flash-kernel initramfs-tools
-sudo apt-get install git make
+sudo apt update
+sudo apt install git make
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 sudo make
