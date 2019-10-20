@@ -71,7 +71,11 @@ cd AstroPiMaker4
 make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
+Please keep in mind that indi-full currently has some broken dependencies, so you will need to install required indi drivers using apt, e.g.
 
+```
+sudo apt install indi-eqmod
+```
 
 5. Enable Wireless Access Point
 
