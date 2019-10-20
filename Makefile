@@ -1,4 +1,4 @@
-pi4: update utils display desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup
+pi4: update utils speedup display desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup
 # wap
 
 
@@ -9,8 +9,11 @@ update:
 
 #install general utilities
 utils :
-	sudo apt -y install net-tools mc git vim ssh x11vnc zsh synaptic fonts-roboto chromium-browser terminator remmina
+	sudo apt -y install net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina
 
+#Keep in mind that this will install snapd which slows down startup
+chrome :
+	sudo apt -y install chromium-browser
 
 display :
 	sudo echo [all] > /boot/firmware/usercfg.txt
@@ -23,20 +26,28 @@ display :
 
 desktop :
 	sudo apt -y install kde-plasma-desktop plasma-nm  lightdm
-#	apt -y install mate-desktop-environment lightdm
-#	apt -y remove lxd lxd-client
-#	rm -rf /etc/cloud/
-#	rm -rf /var/lib/cloud/
-#	apt -y install haveged
-#	systemctl enable haveged
+
+speedup :
+	sudo apt purge snapd
+	sudo apt purge cloud-init
+	sudo rm -rf /etc/cloud/
+	sudo rm -rf /var/lib/cloud/
+	sudo apt -y install haveged
+	sudo systemctl enable haveged
+
 #	#fix wireless
 #	sudo sed -i "s:0x48200100:0x44200100:g" /lib/firmware/brcm/brcmfmac43455-sdio.txt
+
+mate-desktop :
+	sudo apt -y install mate-desktop-environment lightdm
 
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
 	sudo apt update
-	sudo apt -y install indi-full kstars-bleeding
+#Some packages, required for indi-full are not available, so we have to install packages one by one
+	sudo apt -y install indi-bin indi-dsi indi-asi indi-sbig indi-sx indi-gphoto gphoto2
+	sudo apt -y install kstars-bleeding
 
 astrometry :
 	sudo apt -y install astrometry.net astrometry-data-tycho2 astrometry-data-2mass-08-19 astrometry-data-2mass-08-19 astrometry-data-2mass-07 astrometry-data-2mass-06 sextractor
