@@ -34,7 +34,7 @@ You can find it out using gparted, which will show all available devices on your
 *Please be very careful with this command as it will overwrite the disk without any prompts.*
 
 ```
-sudo apt install gddrescue xz-utils
+sudo apt install -y gddrescue xz-utils
 xz -d ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
 sudo ddrescue -D --force ubuntu-19.10-preinstalled-server-armhf+raspi3.img /dev/xxxx
 ```
@@ -66,7 +66,7 @@ Run the following commands:
 
 ```
 sudo apt update
-sudo apt install git make
+sudo apt install -y git make
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 sudo make
@@ -81,4 +81,8 @@ Run command:
 ```
 make wap
 ```
+You will need to reboot Pi after that.
+Once Pi is up, you should be able to see it as RPI in the list of available Access Points. Password is "password" but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
+
+
 
