@@ -3,7 +3,7 @@
 This project contains instructions and Makefile for setting up a Raspberry Pi 4 as an Astrophotography computer.
 Ubuntu Server 19.10 is used as a starting point.
 Why using makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
-**Please keep in mind that this build is experimental and some folks ran into issues, e.g. with 4GB version of Pi and missing INDI drivers.
+**Please keep in mind that this build is experimental and some folks ran into issues, e.g. with 4GB version of Pi and missing INDI drivers**
 
 https://github.com/avarakin/astropi
 
