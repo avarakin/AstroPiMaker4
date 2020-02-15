@@ -1,12 +1,8 @@
 # Introduction
 
 This project contains instructions and Makefile for setting up a Raspberry Pi 4 as an Astrophotography computer.
-Ubuntu Server 19.10 is used as a starting point.
+Ubuntu Server 19.10.1 is used as a starting point.
 Why using makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
-**Please keep in mind that this build is experimental and some folks ran into issues, e.g. with 4GB version of Pi and missing INDI drivers**
-
-More stable build for Pi4 is available under: 
-https://github.com/avarakin/astropi
 
 
 # List of features:
@@ -26,8 +22,7 @@ https://github.com/avarakin/astropi
 
 1. Downlaod image from:
 
-http://cdimage.ubuntu.com/ubuntu/releases/19.10/release/ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
-
+http://cdimage.ubuntu.com/releases/19.10.1/release/ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
 
 2. Unpack and burn image into SD Card.
 
@@ -38,8 +33,8 @@ You can find it out using gparted, which will show all available devices on your
 
 ```
 sudo apt install -y gddrescue xz-utils
-xz -d ubuntu-19.10-preinstalled-server-armhf+raspi3.img.xz
-sudo ddrescue -D --force ubuntu-19.10-preinstalled-server-armhf+raspi3.img /dev/xxxx
+xz -d ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
+sudo ddrescue -D --force ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img /dev/xxxx
 ```
 
 
