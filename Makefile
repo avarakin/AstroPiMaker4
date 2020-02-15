@@ -1,6 +1,8 @@
-pi4: update utils speedup display desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup
+pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing
 # wap
 
+tz:
+	sudo dpkg-reconfigure tzdata
 
 update:
 	sudo apt update
@@ -21,7 +23,7 @@ display :
 	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
 
 
-desktop :
+kde-desktop :
 	sudo apt -y install kde-plasma-desktop plasma-nm  lightdm
 
 speedup :
@@ -102,6 +104,11 @@ vnc :
 	sudo systemctl enable x11vnc.service
 	sudo systemctl start x11vnc.service
 
+astap:
+	wget https://phoenixnap.dl.sourceforge.net/project/astap-program/star_databases/g17_star_database_mag17.deb
+	sudo dpkg -i g17_star_database_mag17.deb
+	wget https://svwh.dl.sourceforge.net/project/astap-program/linux_installer/astap_armhf.deb
+	sudo dpkg -i astap_armhf.deb
 
 groups :
 	sudo gpasswd --add ubuntu dialout
@@ -111,6 +118,14 @@ disable_auto_mount_of_dslr:
 	gsettings set org.mate.media-handling automount false
 
 
+syncthing:
+	curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+	echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+	sudo apt-get update
+	sudo apt-get install syncthing
+	sudo systemctl enable syncthing@ubuntu.service
+	sudo systemctl start syncthing@ubuntu.service
+
 #Optional software, which can be installed separately, e.g.  "sudo make joplin" will install joplin
 
 #Joplin is note taking app. This version is command line driven and can be connected to Dropbox for notes storage. It has desktop and mobile flavors. Useful for storing lists of objects to image etc.
@@ -118,4 +133,11 @@ joplin:
 	sudo apt install -y npm
 	NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
 	sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
+
+arduino:
+	wget https://downloads.arduino.cc/arduino-1.8.12-linuxarm.tar.xz
+	xz -d arduino-1.8.12-linuxarm.tar.xz
+	tar xvf arduino-1.8.12-linuxarm.tar
+	sudo mv arduino-1.8.12 /opt
+	sudo /opt/arduino-1.8.12/install.sh
 
