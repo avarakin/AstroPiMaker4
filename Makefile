@@ -1,5 +1,4 @@
-pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap
-# wap
+pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap wap
 
 tz:
 	sudo dpkg-reconfigure tzdata
@@ -39,9 +38,8 @@ mate-desktop :
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
 	sudo apt update
-#Some packages, required for indi-full are not available, so we have to install packages one by one
-	sudo apt -y install indi-bin indi-dsi indi-asi indi-sbig indi-sx indi-gphoto gphoto2
-	sudo apt -y install kstars-bleeding
+	sudo apt -y install indi-full
+	sudo apt -y install kstars-bleeding gsc
 
 astrometry :
 	sudo apt -y install astrometry.net astrometry-data-tycho2 astrometry-data-2mass-08-19 astrometry-data-2mass-08-19 astrometry-data-2mass-07 astrometry-data-2mass-06 sextractor
@@ -109,6 +107,7 @@ astap:
 	sudo dpkg -i g17_star_database_mag17.deb
 	wget https://svwh.dl.sourceforge.net/project/astap-program/linux_installer/astap_armhf.deb
 	sudo dpkg -i astap_armhf.deb
+	rm astap_armhf.deb  g17_star_database_mag17.deb
 
 groups :
 	sudo gpasswd --add ubuntu dialout
