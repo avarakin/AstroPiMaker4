@@ -32,8 +32,7 @@ speedup :
 
 
 mate-desktop :
-	sudo apt -y install mate-desktop-environment lightdm
-
+	sudo apt -y install mate-desktop-environment lightdm gnome-shell-extension-dash-to-panel gnome-system-monitor
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
