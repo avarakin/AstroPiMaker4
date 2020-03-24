@@ -71,21 +71,5 @@ cd AstroPiMaker4
 make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
-Please keep in mind that indi-full currently has some broken dependencies, so you will need to install required indi drivers using apt, e.g.
-
-```
-sudo apt install indi-eqmod
-```
-
-5. Enable Wireless Access Point
-
-Run command:
-
-```
-make wap
-```
 You will need to reboot Pi after that.
 Once Pi is up, you should be able to see it as RPI in the list of available Access Points. Password is "password" but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
-
-
-
