@@ -13,10 +13,15 @@ Why using makefile as opposed to shell script? Because make stops execution in c
 * CCDCiel
 * Skychart
 * Astrometry with sextractor
+* ASTAP plate solver, which is much faster than astrometry
 2. Sets up Wireless Access Point. Default name is RPI and password is password but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
 3. Sets up x11vnc to be started automatically
 4. Configures screen to be 1920x1080 for headless operation
 5. Comes with KDE Desktop. Keep in mind that only minimal subset of KDE is installed. 
+6. Miscellaneous software
+* Joplin notes app
+* Syncthing for syncing images into processing PC
+* Arduino IDE 
 
 # Installation
 
