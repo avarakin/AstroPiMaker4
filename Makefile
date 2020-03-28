@@ -1,4 +1,6 @@
-pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap wap
+pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap dnsmasq wap
+
+pc: update utils gnome-desktop vnc syncthing
 
 tz:
 	sudo dpkg-reconfigure tzdata
@@ -11,7 +13,7 @@ update:
 
 #install general utilities
 utils :
-	sudo apt -y install net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
+	sudo apt -y install curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
 
 display :
 	sudo sh -c "echo '[all]' > /boot/firmware/usercfg.txt"
@@ -32,7 +34,11 @@ speedup :
 
 
 mate-desktop :
-	sudo apt -y install mate-desktop-environment lightdm gnome-shell-extension-dash-to-panel gnome-system-monitor
+	sudo apt -y install mate-desktop-environment lightdm
+
+
+gnome-desktop :
+	sudo apt -y install lightdm gnome-shell-extension-dash-to-panel gnome-system-monitor
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
@@ -64,9 +70,7 @@ sample_startup :
 	chmod 777 ~/indi.sh
 
 
-#Setting up Wireless Access Point
-wap :
-#before doing everything eles, need to disable built in name resolver 
+dnsmasq :
 	sudo systemctl stop systemd-resolved
 	sudo systemctl disable systemd-resolved
 	sudo rm /etc/resolv.conf
@@ -74,7 +78,9 @@ wap :
 	sudo chattr -e /etc/resolv.conf
 	sudo chattr +i /etc/resolv.conf
 	sudo sh -c "echo  '127.0.0.1 ubuntu' >> /etc/hosts"
-#install hostapd, dnsmasq and create_ap
+	sudo apt -y install dnsmasq
+
+wap :
 	sudo apt -y install hostapd dnsmasq make
 	git clone https://github.com/oblique/create_ap
 	cd create_ap && sudo make install
@@ -121,8 +127,8 @@ syncthing:
 	echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
 	sudo apt-get update
 	sudo apt-get install syncthing
-	sudo systemctl enable syncthing@ubuntu.service
-	sudo systemctl start syncthing@ubuntu.service
+	sudo systemctl enable syncthing@"$$USER".service
+	sudo systemctl start syncthing@"$$USER".service
 
 #Optional software, which can be installed separately, e.g.  "sudo make joplin" will install joplin
 
