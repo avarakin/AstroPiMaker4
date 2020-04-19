@@ -13,10 +13,15 @@ Why using makefile as opposed to shell script? Because make stops execution in c
 * CCDCiel
 * Skychart
 * Astrometry with sextractor
+* ASTAP plate solver, which is much faster than astrometry
 2. Sets up Wireless Access Point. Default name is RPI and password is password but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
 3. Sets up x11vnc to be started automatically
 4. Configures screen to be 1920x1080 for headless operation
 5. Comes with KDE Desktop. Keep in mind that only minimal subset of KDE is installed. 
+6. Miscellaneous software
+* Joplin notes app
+* Syncthing for syncing images into processing PC
+* Arduino IDE 
 
 # Installation
 
@@ -71,21 +76,5 @@ cd AstroPiMaker4
 make
 ```
 This will take an hour or so. It may ask some questions, so monitor the process.
-Please keep in mind that indi-full currently has some broken dependencies, so you will need to install required indi drivers using apt, e.g.
-
-```
-sudo apt install indi-eqmod
-```
-
-5. Enable Wireless Access Point
-
-Run command:
-
-```
-make wap
-```
 You will need to reboot Pi after that.
 Once Pi is up, you should be able to see it as RPI in the list of available Access Points. Password is "password" but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
-
-
-
