@@ -139,3 +139,11 @@ arduino:
 	sudo mv arduino-1.8.12 /opt
 	sudo /opt/arduino-1.8.12/install.sh
 
+libraw:
+#	sudo apt -y install git build-essential autoconf libtool
+#	mkdir -p ~/source
+#	cd ~/source && git clone https://github.com/LibRaw/LibRaw.git && cd LibRaw && autoreconf --install && ./configure && make
+#	cd ~/source && git clone https://github.com/pchev/libpasraw.git && cd libpasraw/raw && make -f Makefile.dev && cp libpasraw.so.1.1 ~/source/LibRaw/lib/.libs && ln -s ~/source/LibRaw/lib/.libs/libpasraw.so.1.1 ~/source/LibRaw/lib/.libs/libpasraw.so.1
+	echo "export LD_LIBRARY_PATH=~/source/LibRaw/lib/.libs && ccdciel"   > ~/ccdciel.sh
+	chmod 777 ~/ccdciel.sh
+
