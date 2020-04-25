@@ -25,9 +25,13 @@ Why using makefile as opposed to shell script? Because make stops execution in c
 
 # Installation
 
-1. Downlaod image from:
+1. Downlaod image for 19.10:
 
 http://cdimage.ubuntu.com/releases/19.10.1/release/ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
+
+or 20.04:
+
+http://d3s68rdjvu5sgr.cloudfront.net/ubuntu-20.04-preinstalled-server-armhf%2Braspi.img.xz
 
 2. Unpack and burn image into SD Card.
 
