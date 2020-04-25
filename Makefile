@@ -1,4 +1,6 @@
-pi4: tz update utils speedup display gnome-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap dnsmasq wap
+pi4: tz update utils speedup display gnome-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
+
+extras: arduino libraw astap
 
 tz:
 	sudo dpkg-reconfigure tzdata
@@ -106,14 +108,15 @@ vnc :
 	sudo systemctl start x11vnc.service
 
 astap:
-	wget https://phoenixnap.dl.sourceforge.net/project/astap-program/star_databases/g17_star_database_mag17.deb
-	sudo dpkg -i g17_star_database_mag17.deb
+	wget https://managedway.dl.sourceforge.net/project/astap-program/star_databases/g17_star_database_mag17_astap.deb
+	sudo dpkg -i g17_star_database_mag17_astap.deb
 	wget https://svwh.dl.sourceforge.net/project/astap-program/linux_installer/astap_armhf.deb
 	sudo dpkg -i astap_armhf.deb
-	rm astap_armhf.deb  g17_star_database_mag17.deb
+	rm astap_armhf.deb  g17_star_database_mag17_astap.deb
 
 groups :
-	sudo gpasswd --add ubuntu dialout
+	sudo usermod -a -G dialout $(USER)
+#	sudo gpasswd --add ubuntu dialout
 
 
 disable_auto_mount_of_dslr:
