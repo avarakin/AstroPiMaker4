@@ -1,6 +1,6 @@
 pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing astap dnsmasq wap
 
-pc: update utils gnome-desktop vnc syncthing
+pc: update utils gnome-desktop syncthing joplin_pc chrome
 
 tz:
 	sudo dpkg-reconfigure tzdata
@@ -9,7 +9,7 @@ update:
 	sudo apt update
 	sudo apt -y upgrade
 	sudo apt -y purge unattended-upgrades
-	
+
 
 #install general utilities
 utils :
@@ -38,7 +38,7 @@ mate-desktop :
 
 
 gnome-desktop :
-	sudo apt -y install lightdm gnome-shell-extension-dash-to-panel gnome-system-monitor
+	sudo apt -y install gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
@@ -138,6 +138,9 @@ joplin:
 	NPM_CONFIG_PREFIX=~/.joplin-bin npm install -g joplin
 	sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
 
+joplin_pc:
+	wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash
+
 arduino:
 	wget https://downloads.arduino.cc/arduino-1.8.12-linuxarm.tar.xz
 	xz -d arduino-1.8.12-linuxarm.tar.xz
@@ -146,10 +149,13 @@ arduino:
 	sudo /opt/arduino-1.8.12/install.sh
 
 libraw:
-#	sudo apt -y install git build-essential autoconf libtool
-#	mkdir -p ~/source
-#	cd ~/source && git clone https://github.com/LibRaw/LibRaw.git && cd LibRaw && autoreconf --install && ./configure && make
-#	cd ~/source && git clone https://github.com/pchev/libpasraw.git && cd libpasraw/raw && make -f Makefile.dev && cp libpasraw.so.1.1 ~/source/LibRaw/lib/.libs && ln -s ~/source/LibRaw/lib/.libs/libpasraw.so.1.1 ~/source/LibRaw/lib/.libs/libpasraw.so.1
+	sudo apt -y install git build-essential autoconf libtool
+	mkdir -p ~/source
+	cd ~/source && git clone https://github.com/LibRaw/LibRaw.git && cd LibRaw && autoreconf --install && ./configure && make
+	cd ~/source && git clone https://github.com/pchev/libpasraw.git && cd libpasraw/raw && make -f Makefile.dev && cp libpasraw.so.1.1 ~/source/LibRaw/lib/.libs && ln -s ~/source/LibRaw/lib/.libs/libpasraw.so.1.1 ~/source/LibRaw/lib/.libs/libpasraw.so.1
 	echo "export LD_LIBRARY_PATH=~/source/LibRaw/lib/.libs && ccdciel"   > ~/ccdciel.sh
 	chmod 777 ~/ccdciel.sh
 
+
+chrome:
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && sudo dpkg -i google-chrome-stable_current_amd64.deb
