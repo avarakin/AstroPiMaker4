@@ -113,7 +113,8 @@ astap:
 	rm astap_armhf.deb  g17_star_database_mag17.deb
 
 groups :
-	sudo gpasswd --add ubuntu dialout
+	#sudo gpasswd --add ubuntu dialout
+	sudo usermod -a -G dialout $(USER)
 
 
 disable_auto_mount_of_dslr:
