@@ -38,7 +38,7 @@ mate-desktop :
 
 
 gnome-desktop :
-	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor
+	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
