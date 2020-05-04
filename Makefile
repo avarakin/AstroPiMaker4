@@ -116,8 +116,6 @@ astap:
 
 groups :
 	sudo usermod -a -G dialout $(USER)
-#	sudo gpasswd --add ubuntu dialout
-
 
 disable_auto_mount_of_dslr:
 	gsettings set org.mate.media-handling automount false
