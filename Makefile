@@ -1,4 +1,4 @@
-pi4: tz update utils speedup display gnome-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
+pi4: tz update utils speedup display kde-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
 
 extras: arduino libraw astap
 
@@ -38,7 +38,7 @@ mate-desktop :
 
 
 gnome-desktop :
-	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor
+	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor gnome-session
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
