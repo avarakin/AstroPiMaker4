@@ -30,9 +30,11 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 
 # Installation
 
-1. Downlaod image
+1. Downlaod 32 bit image of 20.04 from page:
 
-http://d3s68rdjvu5sgr.cloudfront.net/ubuntu-20.04-preinstalled-server-armhf%2Braspi.img.xz
+https://ubuntu.com/download/raspberry-pi
+
+It looks like they use same image for RPi3 and RPi4, so same image can be used for RPi3
 
 2. Unpack and burn image into SD Card.
 
@@ -45,6 +47,12 @@ Replace 192.168.1.0 by your network's subnet:
 
 ```
 nmap -p 22 --open -sV 192.168.1.0/24
+```
+
+You can also find IP address of your RPi in your router admin page, look for DHCP leases.
+Of course, you can also just add connect mouse, keyboard and screen and find the IP using command:
+```
+ip addr
 ```
 
 
