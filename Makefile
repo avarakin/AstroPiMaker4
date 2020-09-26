@@ -130,6 +130,10 @@ realvnc:
 	echo "deb http://ppa.launchpad.net/ubuntu-raspi2/ppa/ubuntu bionic main " | sudo tee /etc/apt/sources.list.d/raspi.list
 	sudo apt update
 	sudo apt install libraspberrypi-bin libraspberrypi-dev libraspberrypi-bin-nonfree
+	wget https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.deb
+	sudo dpkg -i VNC-Server-6.7.2-Linux-ARM.deb 
+	rm VNC-Server-6.7.2-Linux-ARM.deb
+
 
 
 syncthing:
