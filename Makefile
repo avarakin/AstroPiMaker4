@@ -1,5 +1,7 @@
 pi4: tz update utils speedup display kde-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
 
+music_server: tz update utils lxde-desktop display syncthing
+
 extras: arduino libraw astap
 
 tz:
@@ -23,6 +25,9 @@ display :
 	sudo sh -c "echo 'hdmi_mode=82' >> /boot/firmware/usercfg.txt"
 	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
 
+
+lxde-desktop :
+	sudo sudo apt install -y lubuntu-desktop
 
 kde-desktop :
 	sudo apt -y install kde-plasma-desktop plasma-nm  lightdm
@@ -119,6 +124,12 @@ groups :
 
 disable_auto_mount_of_dslr:
 	gsettings set org.mate.media-handling automount false
+
+
+realvnc:
+	echo "deb http://ppa.launchpad.net/ubuntu-raspi2/ppa/ubuntu bionic main " | sudo tee /etc/apt/sources.list.d/raspi.list
+	sudo apt update
+	sudo apt install libraspberrypi-bin libraspberrypi-dev libraspberrypi-bin-nonfree
 
 
 syncthing:
