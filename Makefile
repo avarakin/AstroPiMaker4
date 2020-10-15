@@ -11,6 +11,24 @@ update:
 	sudo apt -y purge unattended-upgrades
 
 
+
+serial:
+	sudo echo enable_uart=1 >> /boot/config.txt
+	sudo sed -i.bak 's/console=serial0,115200//'  /boot/firmware/cmdline.txt
+	sudo systemctl stop serial-getty@ttyS0.service
+	sudo systemctl disable serial-getty@ttyS0.service
+	sudo sh -c "echo  'KERNEL==\"ttyS0\", SYMLINK+=\"serial0\" GROUP=\"tty\" MODE=\"0660\"' > /etc/udev/rules.d/80-serial.rules"
+	sudo sh -c "echo  'KERNEL==\"ttyAMA0\", SYMLINK+=\"serial1\" GROUP=\"tty\" MODE=\"0660\"' >> /etc/udev/rules.d/80-serial.rules"
+	cat /etc/udev/rules.d/80-serial.rules
+	#sudo udevadm control --reload-rules
+	#sudo udevadm trigger
+	
+serial_after_reboot:
+	sudo chgrp -h tty /dev/serial0
+	sudo chgrp -h tty /dev/serial1
+	sudo adduser $$USER tty
+	sudo adduser $$USER dialout
+
 #install general utilities
 utils :
 	sudo apt -y install curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
