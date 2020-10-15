@@ -24,6 +24,9 @@ display :
 	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
 
 
+lxde-desktop :
+	sudo sudo apt install -y lubuntu-desktop
+
 kde-desktop :
 	sudo apt -y install kde-plasma-desktop plasma-nm  lightdm
 
@@ -38,7 +41,7 @@ mate-desktop :
 
 
 gnome-desktop :
-	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor
+	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor gnome-session
 
 indi_kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
@@ -119,6 +122,16 @@ groups :
 
 disable_auto_mount_of_dslr:
 	gsettings set org.mate.media-handling automount false
+
+
+realvnc:
+	echo "deb http://ppa.launchpad.net/ubuntu-raspi2/ppa/ubuntu bionic main " | sudo tee /etc/apt/sources.list.d/raspi.list
+	sudo apt update
+	sudo apt install libraspberrypi-bin libraspberrypi-dev libraspberrypi-bin-nonfree
+	wget https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.deb
+	sudo dpkg -i VNC-Server-6.7.2-Linux-ARM.deb 
+	rm VNC-Server-6.7.2-Linux-ARM.deb
+
 
 
 syncthing:

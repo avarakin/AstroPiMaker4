@@ -1,9 +1,12 @@
 # Introduction
 
 This project contains instructions and Makefile for setting up a Raspberry Pi 4 as an Astrophotography computer.
-Ubuntu Server 19.10.1 is used as a starting point.
+Ubuntu Server 20.04 32 bits is used as a starting point.
 Why using makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
 
+# Warning
+This script is better suited for users, who have experience with Linux and want to build a system from scratch, utilizing official images from Ubuntu. 
+In case if you don't have experience with Linux, it is suggested to install Astroberry image or buy StellarMate image.
 
 # List of features:
 1. Installs most commonly used Astrophotography software:
@@ -17,53 +20,46 @@ Why using makefile as opposed to shell script? Because make stops execution in c
 2. Sets up Wireless Access Point. Default name is RPI and password is password but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
 3. Sets up x11vnc to be started automatically
 4. Configures screen to be 1920x1080 for headless operation
-5. Defaults to Gnome Desktop, but KDE and Mate can also be installed 
+5. Defaults to KDE Desktop, but Gnome and Mate can also be installed 
 6. Miscellaneous software
 * Joplin notes app (broken under 20.04)
 * Syncthing for syncing images into processing PC
 * Arduino IDE 
-* Latest Libraw with Canon CR3 support. At this point, only CCDCiel is is working with this library, Ekos crashes with it
+* Latest Libraw with Canon CR3 support. At this point, only CCDCiel is working with this library, Ekos crashes with it
+7. Fully headless operation
 
 # Installation
 
-1. Downlaod image for 19.10:
+1. Downlaod 32 bit image of 20.04 from page:
 
-http://cdimage.ubuntu.com/releases/19.10.1/release/ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
+https://ubuntu.com/download/raspberry-pi
 
-or 20.04:
-
-http://d3s68rdjvu5sgr.cloudfront.net/ubuntu-20.04-preinstalled-server-armhf%2Braspi.img.xz
+It looks like they use same image for RPi3 and RPi4, so same image can be used for RPi3
 
 2. Unpack and burn image into SD Card.
-
-Here are the instructions for Ubuntu/Debian based PC. If you are using other OS, please use appropriate for your system steps.
-You need to replace /dev/xxxx at the end of last command with appropriate device for your SD Card. 
-You can find it out using gparted, which will show all available devices on your computer.
-*Please be very careful with this command as it will overwrite the disk without any prompts.*
-
-```
-sudo apt install -y gddrescue xz-utils
-xz -d ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img.xz
-sudo ddrescue -D --force ubuntu-19.10.1-preinstalled-server-armhf+raspi3.img /dev/xxxx
-```
-
 
 3. Connect to Pi
 
 Connect Ethernet cable, put the card into RPI and boot.
 
 Once green networking LED starts blinking, you can try to find the RPI on the network using nmap.
-Replace 192.168.200.0 by your network's subnet:
+Replace 192.168.1.0 by your network's subnet:
 
 ```
-nmap -p 22 --open -sV 192.168.200.0/24
+nmap -p 22 --open -sV 192.168.1.0/24
+```
+
+You can also find IP address of your RPi in your router admin page, look for DHCP leases.
+Of course, you can also just add connect mouse, keyboard and screen and find the IP using command:
+```
+ip addr
 ```
 
 
 Once you identify IP of your PI,  login into it using ssh, with user/password : ubuntu/ubuntu, e.g.:
 
 ```
-ssh ubuntu@192.168.200.100
+ssh ubuntu@192.168.1.100
 ```
 
 It will ask to change the password.
@@ -88,5 +84,5 @@ Once Pi is up, you should be able to see it as RPI in the list of available Acce
 1. Reboot the system.
 2. Connect to it using VNC
 3. Installer creates a startup script indi.sh in home directory which you need to edit to include your drivers
-4. You can change the look and feel of desktop to be more conventional by opening Gnome Tweaks tool and enabling "Dash to Panel" and "System Monitor" extensions
+4. In case if you run Gnome, you can change the look and feel of desktop to be more conventional by opening Gnome Tweaks tool and enabling "Dash to Panel" and "System Monitor" extensions
 
