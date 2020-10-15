@@ -1,4 +1,4 @@
-pi4: tz update utils speedup display gnome-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
+pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
 
 extras: arduino libraw astap
 
@@ -151,3 +151,9 @@ libraw:
 	cd ~/source && git clone https://github.com/pchev/libpasraw.git && cd libpasraw/raw && make -f Makefile.dev && cp libpasraw.so.1.1 ~/source/LibRaw/lib/.libs && ln -s ~/source/LibRaw/lib/.libs/libpasraw.so.1.1 ~/source/LibRaw/lib/.libs/libpasraw.so.1
 	echo "export LD_LIBRARY_PATH=~/source/LibRaw/lib/.libs && ccdciel"   > ~/ccdciel.sh
 	chmod 777 ~/ccdciel.sh
+
+
+build_kstars:
+	sudo apt -y install build-essential cmake git libeigen3-dev libcfitsio-dev zlib1g-dev libindi-dev extra-cmake-modules libkf5plotting-dev libqt5svg5-dev libkf5xmlgui-dev  libkf5kio-dev kinit-dev libkf5newstuff-dev kdoctools-dev libkf5notifications-dev qtdeclarative5-dev libkf5crash-dev gettext libnova-dev libgsl-dev libraw-dev libkf5notifyconfig-dev wcslib-dev libqt5websockets5-dev xplanet xplanet-images qt5keychain-dev libsecret-1-dev breeze-icon-theme
+	#mkdir -p ~/Projects/build/kstars && cd ~/Projects && git clone git://anongit.kde.org/kstars.git
+	cd ~/Projects/build/kstars && cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_BUILD_TYPE=Debug ~/Projects/kstars && make
