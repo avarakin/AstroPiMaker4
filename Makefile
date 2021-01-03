@@ -1,4 +1,4 @@
-pi4: tz update utils speedup display mate-desktop indi_kstars ccdciel_skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
+pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
 
 extras: arduino libraw astap
 
@@ -61,21 +61,32 @@ mate-desktop :
 gnome-desktop :
 	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor gnome-session
 
-indi_kstars :
+indi :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
 	sudo apt update
 	sudo apt -y install indi-full
+
+kstars :
+	sudo apt-add-repository -y ppa:mutlaqja/ppa
+	sudo apt update
 	sudo apt -y install kstars-bleeding gsc
 
 astrometry :
 	sudo apt -y install astrometry.net astrometry-data-tycho2 astrometry-data-2mass-08-19 astrometry-data-2mass-08-19 astrometry-data-2mass-07 astrometry-data-2mass-06 sextractor
 
 #install ccdciel and skychart
-ccdciel_skychart :
+skychart :
 	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA716FC2
 	sudo sh -c "echo 'deb http://www.ap-i.net/apt unstable main' > /etc/apt/sources.list.d/skychart.list"
 	sudo apt update
-	sudo apt -y install ccdciel skychart
+	sudo apt -y install skychart
+
+ccdciel :
+	sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys AA716FC2
+	sudo sh -c "echo 'deb http://www.ap-i.net/apt unstable main' > /etc/apt/sources.list.d/skychart.list"
+	sudo apt update
+	sudo apt -y install ccdciel
+
 
 
 #install phd2
@@ -129,9 +140,9 @@ vnc :
 	sudo systemctl start x11vnc.service
 
 astap:
-	wget https://managedway.dl.sourceforge.net/project/astap-program/star_databases/g17_star_database_mag17_astap.deb
+	wget https://sourceforge.net/projects/astap-program/files/star_databases/g17_star_database_mag17_astap.deb
 	sudo dpkg -i g17_star_database_mag17_astap.deb
-	wget https://svwh.dl.sourceforge.net/project/astap-program/linux_installer/astap_armhf.deb
+	wget https://sourceforge.net/projects/astap-program/files/linux_installer/astap_armhf.deb
 	sudo dpkg -i astap_armhf.deb
 	rm astap_armhf.deb  g17_star_database_mag17_astap.deb
 
