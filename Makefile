@@ -124,6 +124,11 @@ wap :
 	sudo systemctl status create_ap
 	echo It would be a good idea to reboot now!
 
+auto_login:
+	sudo sh -c "echo '[SeatDefaults]' > /etc/lightdm/lightdm.conf"
+	sudo sh -c "echo 'greeter-session=lightdm-gtk-greeter' >> /etc/lightdm/lightdm.conf"
+	sudo sh -c "echo 'autologin-user=ubuntu' >> /etc/lightdm/lightdm.conf"
+
 #configure x11vnc 
 VNC=/lib/systemd/system/x11vnc.service
 vnc :
