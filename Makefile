@@ -29,6 +29,13 @@ serial_after_reboot:
 	sudo adduser $$USER tty
 	sudo adduser $$USER dialout
 
+
+nomachine:
+	wget https://download.nomachine.com/download/7.3/Raspberry/nomachine_7.3.2_1_armhf.deb
+	sudo dpkg -i nomachine_7.3.2_1_armhf.deb
+	rm nomachine_7.3.2_1_armhf.deb
+
+
 #install general utilities
 utils :
 	sudo apt -y install curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
