@@ -1,4 +1,4 @@
-pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap
+pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap autostart
 
 extras: arduino libraw astap
 
@@ -32,6 +32,12 @@ serial_after_reboot:
 #install general utilities
 utils :
 	sudo apt -y install curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
+
+autostart:
+	sudo sh -c "echo [SeatDefaults] > /etc/lightdm/lightdm.conf"
+	sudo sh -c "echo greeter-session=lightdm-gtk-greeter >> /etc/lightdm/lightdm.conf"
+	sudo sh -c "echo autologin-user=ubuntu >> /etc/lightdm/lightdm.conf"
+
 
 display :
 	sudo sh -c "echo '[all]' > /boot/firmware/usercfg.txt"
