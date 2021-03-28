@@ -1,6 +1,6 @@
-pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart wap
+pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart astap wap
 
-extras: arduino libraw astap
+extras: arduino libraw
 
 tz:
 	sudo dpkg-reconfigure tzdata
