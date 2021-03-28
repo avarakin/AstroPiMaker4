@@ -1,4 +1,4 @@
-pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd vnc groups astrometry sample_startup syncthing dnsmasq wap autostart
+pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart wap
 
 extras: arduino libraw astap
 
@@ -172,13 +172,18 @@ disable_auto_mount_of_dslr:
 
 
 realvnc:
-	echo "deb http://ppa.launchpad.net/ubuntu-raspi2/ppa/ubuntu bionic main " | sudo tee /etc/apt/sources.list.d/raspi.list
-	sudo apt update
-	sudo apt install libraspberrypi-bin libraspberrypi-dev libraspberrypi-bin-nonfree
 	wget https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.deb
+	sudo mkdir -p /opt/vc/lib
+	sudo cp lib/*.so /opt/vc/lib
 	sudo dpkg -i VNC-Server-6.7.2-Linux-ARM.deb 
+	sudo systemctl start vncserver-virtuald.service
+	sudo systemctl start vncserver-x11-serviced.service
+	sudo systemctl enable vncserver-virtuald.service
+	sudo systemctl enable vncserver-x11-serviced.service
 	rm VNC-Server-6.7.2-Linux-ARM.deb
-
+	#the commands below are needed if you want to use 3rd party vnc clients, while connecting to Pi 
+	sudo vncpasswd -service
+	sudo sh -c "echo Authentication=VncAuth >> /root/.vnc/config.d/vncserver-x11"
 
 
 syncthing:
