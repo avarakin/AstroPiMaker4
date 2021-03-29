@@ -157,6 +157,7 @@ vnc :
 	sudo systemctl enable x11vnc.service
 	sudo systemctl start x11vnc.service
 
+
 astap:
 	wget https://sourceforge.net/projects/astap-program/files/star_databases/g17_star_database_mag17_astap.deb
 	sudo dpkg -i g17_star_database_mag17_astap.deb
@@ -184,6 +185,12 @@ realvnc:
 	#the commands below are needed if you want to use 3rd party vnc clients, while connecting to Pi 
 	sudo vncpasswd -service
 	sudo sh -c "echo Authentication=VncAuth >> /root/.vnc/config.d/vncserver-x11"
+	sudo systemctl restart vncserver-x11-serviced.service
+
+upgrade_vnc:
+	sudo systemctl stop x11vnc.service
+	sudo systemctl disable x11vnc.service
+	make realvnc
 
 
 syncthing:
