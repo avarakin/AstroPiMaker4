@@ -212,16 +212,22 @@ upgrade_vnc:
 
 tigervnc :
 	sudo apt -y install tigervnc-standalone-server tigervnc-common
-	tigervnc
+	#vncserver
 	#populate config file
 	echo geometry=1920x1080 > ~/.vnc/config
 	echo alwaysshared >> ~/.vnc/config
+	echo localhost=no >> ~/.vnc/config
+	#add user
 	sudo sh -c "echo :1=$(USER) >>  /etc/tigervnc/vncserver.users"
 	#populate xstartup
-	echo "#!/bin/sh" >> ~/.vnc/xstartup
+	echo "#!/bin/sh" > ~/.vnc/xstartup
 	echo "unset SESSION_MANAGER">> ~/.vnc/xstartup
 	echo "unset DBUS_SESSION_BUS_ADDRESS">> ~/.vnc/xstartup
-	echo "exec mint-session">> ~/.vnc/xstartup
+	echo "/usr/bin/mate-session">> ~/.vnc/xstartup
+	echo "[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup" >> ~/.vnc/xstartup
+	echo "[ -r $(HOME)/.Xresources ] && xrdb $(HOME)/.Xresources" >> ~/.vnc/xstartup
+	echo "x-window-manager &" >> ~/.vnc/xstartup
+	chmod u+x ~/.vnc/xstartup
 	#create service
 	sudo systemctl enable tigervncserver@:1.service
 	sudo systemctl start tigervncserver@:1.service
