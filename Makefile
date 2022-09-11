@@ -162,6 +162,13 @@ vnc :
 	sudo systemctl start x11vnc.service
 
 
+astap_x86:
+	#wget https://versaweb.dl.sourceforge.net/project/astap-program/linux_installer/astap_amd64.deb
+	#wget https://cytranet.dl.sourceforge.net/project/astap-program/star_databases/h18_star_database_mag18_astap.deb
+	sudo dpkg -i astap_amd64.deb h18_star_database_mag18_astap.deb
+	rm astap_amd64.deb h18_star_database_mag18_astap.deb
+
+
 astap:
 	wget https://sourceforge.net/projects/astap-program/files/star_databases/g17_star_database_mag17_astap.deb
 	sudo dpkg -i g17_star_database_mag17_astap.deb
