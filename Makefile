@@ -1,5 +1,9 @@
 pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart astap wap
 
+x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup tigervnc syncthing dnsmasq astap wap
+#astap
+#realvnc autostart speedup display
+
 extras: arduino libraw
 
 tz:
@@ -7,8 +11,8 @@ tz:
 
 update:
 	sudo apt update
-	sudo apt -y upgrade
-	sudo apt -y purge unattended-upgrades
+	sudo apt upgrade -y
+	sudo apt purge -y unattended-upgrades
 
 
 
@@ -172,6 +176,20 @@ disable_auto_mount_of_dslr:
 	gsettings set org.mate.media-handling automount false
 
 
+realvnc_x86:
+	wget https://downloads.realvnc.com/download/file/vnc.files/VNC-Server-6.10.1-Linux-x64.deb
+	sudo dpkg -i VNC-Server-6.10.1-Linux-x64.deb
+	sudo systemctl start vncserver-virtuald.service
+	sudo systemctl start vncserver-x11-serviced.service
+	sudo systemctl enable vncserver-virtuald.service
+	sudo systemctl enable vncserver-x11-serviced.service
+	rm VNC-Server-6.10.1-Linux-x64.deb
+	#the commands below are needed if you want to use 3rd party vnc clients, while connecting to Pi 
+	sudo vncpasswd -service
+	sudo sh -c "echo Authentication=VncAuth >> /root/.vnc/config.d/vncserver-x11"
+	sudo systemctl restart vncserver-x11-serviced.service
+
+
 realvnc:
 	wget https://www.realvnc.com/download/file/vnc.files/VNC-Server-6.7.2-Linux-ARM.deb
 	sudo mkdir -p /opt/vc/lib
@@ -191,6 +209,25 @@ upgrade_vnc:
 	sudo systemctl stop x11vnc.service
 	sudo systemctl disable x11vnc.service
 	make realvnc
+
+tigervnc :
+	sudo apt -y install tigervnc-standalone-server tigervnc-common
+	tigervnc
+	#populate config file
+	echo geometry=1920x1080 > ~/.vnc/config
+	echo alwaysshared >> ~/.vnc/config
+	sudo sh -c "echo :1=$(USER) >>  /etc/tigervnc/vncserver.users"
+	#populate xstartup
+	echo "#!/bin/sh" >> ~/.vnc/xstartup
+	echo "unset SESSION_MANAGER">> ~/.vnc/xstartup
+	echo "unset DBUS_SESSION_BUS_ADDRESS">> ~/.vnc/xstartup
+	echo "exec mint-session">> ~/.vnc/xstartup
+	#create service
+	sudo systemctl enable tigervncserver@:1.service
+	sudo systemctl start tigervncserver@:1.service
+	sudo systemctl status tigervncserver@:1.service
+
+
 
 
 syncthing:
