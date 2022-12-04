@@ -1,6 +1,6 @@
 pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart astap wap
 
-x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup tigervnc syncthing dnsmasq astap wap
+x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup vnc syncthing astap_x86
 #astap
 #realvnc autostart speedup display
 
@@ -86,7 +86,7 @@ indi :
 kstars :
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
 	sudo apt update
-	sudo apt -y install kstars-bleeding gsc
+	sudo apt -y install kstars-bleeding
 
 astrometry :
 	sudo apt -y install astrometry.net astrometry-data-tycho2 astrometry-data-2mass-08-19 astrometry-data-2mass-08-19 astrometry-data-2mass-07 astrometry-data-2mass-06 sextractor
@@ -163,10 +163,12 @@ vnc :
 
 
 astap_x86:
-	#wget https://versaweb.dl.sourceforge.net/project/astap-program/linux_installer/astap_amd64.deb
-	#wget https://cytranet.dl.sourceforge.net/project/astap-program/star_databases/h18_star_database_mag18_astap.deb
-	sudo dpkg -i astap_amd64.deb h18_star_database_mag18_astap.deb
-	rm astap_amd64.deb h18_star_database_mag18_astap.deb
+	wget  https://netactuate.dl.sourceforge.net/project/astap-program/star_databases/h18_star_database_mag18_astap.deb
+	sudo dpkg -i h18_star_database_mag18_astap.deb
+	rm h18_star_database_mag18_astap.deb
+	wget https://phoenixnap.dl.sourceforge.net/project/astap-program/linux_installer/astap_amd64.deb
+	sudo dpkg -i astap_amd64.deb
+	rm astap_amd64.deb
 
 
 astap:
