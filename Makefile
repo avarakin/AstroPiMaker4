@@ -1,5 +1,8 @@
 pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart phd realvnc groups astrometry sample_startup syncthing dnsmasq autostart astap wap
 
+le_potato: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc
+
+
 x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup vnc syncthing astap_x86
 #astap
 #realvnc autostart speedup display
@@ -42,12 +45,13 @@ nomachine:
 
 #install general utilities
 utils :
-	sudo apt -y install curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser
+	sudo apt -y install  dialog apt-utils software-properties-common  curl net-tools firefox mc git vim ssh x11vnc zsh synaptic fonts-roboto terminator remmina chromium-browser htop
+	sudo apt update
 
 autostart:
 	sudo sh -c "echo [SeatDefaults] > /etc/lightdm/lightdm.conf"
 	sudo sh -c "echo greeter-session=lightdm-gtk-greeter >> /etc/lightdm/lightdm.conf"
-	sudo sh -c "echo autologin-user=ubuntu >> /etc/lightdm/lightdm.conf"
+	sudo sh -c "echo autologin-user=$$USER  >> /etc/lightdm/lightdm.conf"
 
 
 display :
@@ -219,10 +223,21 @@ upgrade_vnc:
 	sudo systemctl disable x11vnc.service
 	make realvnc
 
+tightvnc:
+	sudo apt install tightvncserver
+	tightvncserver
+	sudo sh -c "echo '#!/bin/sh -e' > /etc/rc.local"
+	sudo sh -c "echo 'sudo -u $$USER tightvncserver :1 -geometry 1920x1080  -depth 24' >> /etc/rc.local"
+	sudo sh -c "echo 'exit 0' >> /etc/rc.local"
+	sudo sh -c "chmod 777 /etc/rc.local"
+
+
+
 tigervnc :
 	sudo apt -y install tigervnc-standalone-server tigervnc-common
 	#vncserver
 	#populate config file
+	mkdir -p ~/.vnc
 	echo geometry=1920x1080 > ~/.vnc/config
 	echo alwaysshared >> ~/.vnc/config
 	echo localhost=no >> ~/.vnc/config
@@ -232,7 +247,7 @@ tigervnc :
 	echo "#!/bin/sh" > ~/.vnc/xstartup
 	echo "unset SESSION_MANAGER">> ~/.vnc/xstartup
 	echo "unset DBUS_SESSION_BUS_ADDRESS">> ~/.vnc/xstartup
-	echo "/usr/bin/cinnamon-session">> ~/.vnc/xstartup
+	echo "/usr/bin/mate-session">> ~/.vnc/xstartup
 	#echo "[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup" >> ~/.vnc/xstartup
 	#echo "[ -r $(HOME)/.Xresources ] && xrdb $(HOME)/.Xresources" >> ~/.vnc/xstartup
 	echo "x-window-manager &" >> ~/.vnc/xstartup
