@@ -283,6 +283,17 @@ arduino:
 	sudo mv arduino-1.8.12 /opt
 	sudo /opt/arduino-1.8.12/install.sh
 
+
+swap:
+	sudo mkdir /swap
+	sudo truncate -s 0 /swap/swapfile
+	sudo chattr +C /swap/swapfile
+	sudo fallocate -l 2G /swap/swapfile
+	sudo chmod 0600 /swap/swapfile
+	sudo mkswap /swap/swapfile
+	sudo swapon /swap/swapfile
+
+
 libraw:
 	sudo apt -y install git build-essential autoconf libtool
 	mkdir -p ~/source
