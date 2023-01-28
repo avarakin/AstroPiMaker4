@@ -122,12 +122,9 @@ adduser YOUR_USERNAME sudo
 su YOUR_USERNAME
 sudo apt update
 sudo apt upgrade
-sudo apt install -y git make vim 
+sudo apt install -y git make dialog
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 make le_potato
 ```
 5. Change hostname in /etc/hostname
-
-
-
