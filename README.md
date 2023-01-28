@@ -105,7 +105,8 @@ Libre Computer Le Potato is a low cost ($35 as of January 2023) Raspberry Pi clo
 
 
 ## Installation steps
-Even though you can use desktop version of Le Potato image as a starting point, it it not recommended because Gnome based Ubuntu desktop is resource intensive and may cause periodic freezing. Furthermore, Ubuntu desktop version comes with software which is redundant for the given use case. The script installs Mate desktop which is very light weight
+Even though you can use desktop version of Le Potato image as a starting point, it it not recommended because Gnome based Ubuntu desktop is resource intensive and may cause periodic freezing. Furthermore, Ubuntu desktop version comes with software which is redundant for the given use case. The instructions assume that you use base Ubuntu image of Le Potato as a starting point.
+The script installs Mate desktop which is very light weight.
 
 1. Download base version of Ubuntu:
 https://distro.libre.computer/ci/ubuntu/22.04/ubuntu-22.04.1-preinstalled-server-arm64%2Baml-s905x-cc.img.xz
