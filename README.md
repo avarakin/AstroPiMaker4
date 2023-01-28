@@ -1,8 +1,8 @@
 # Introduction
 
-This project contains instructions and Makefile for setting up a Raspberry Pi 4 as an Astrophotography computer.
-Ubuntu Server 20.04 32 bits is used as a starting point.
-Why using makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
+This project contains instructions and Makefile for setting up a portable Astrophotography computer.
+It can be used for setting different computers:  Raspberry Pi, Libre Computers Le Potato and a regular x86 PC.
+Why use makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
 
 # Warning
 This script is better suited for users, who have experience with Linux and want to build a system from scratch, utilizing official images from Ubuntu. 
@@ -18,17 +18,16 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 * Astrometry with sextractor
 * ASTAP plate solver, which is much faster than astrometry
 2. Sets up Wireless Access Point. Default name is RPI and password is password but can be changed in the script. Once connected to WAP,  IP address of PI is 10.0.0.1
-3. Sets up x11vnc to be started automatically
+3. Sets up vnc to be started automatically
 4. Configures screen to be 1920x1080 for headless operation
-5. Defaults to KDE Desktop, but Gnome and Mate can also be installed 
-6. Miscellaneous software
+5. Miscellaneous software
 * Joplin notes app (broken under 20.04)
 * Syncthing for syncing images into processing PC
 * Arduino IDE 
 * Latest Libraw with Canon CR3 support. At this point, only CCDCiel is working with this library, Ekos crashes with it
-7. Fully headless operation
+6. Fully headless operation
 
-# Installation
+# Installation for Raspberry Pi
 
 1. Downlaod 32 bit image of 20.04 from page:
 
@@ -86,3 +85,18 @@ Once Pi is up, you should be able to see it as RPI in the list of available Acce
 3. Installer creates a startup script indi.sh in home directory which you need to edit to include your drivers
 4. In case if you run Gnome, you can change the look and feel of desktop to be more conventional by opening Gnome Tweaks tool and enabling "Dash to Panel" and "System Monitor" extensions
 
+# Installation for x86 PC
+Install any flavor of Ubuntu you like and then install script and rest of software:
+
+sudo apt update
+sudo apt install -y git make
+git clone https://github.com/avarakin/AstroPiMaker4.git
+cd AstroPiMaker4
+make pc
+
+# Installation for Libre Computer Le Potato
+Libre Computer Le Potato is a low cost ($35 as of January 2023) Raspberry Pi clone, which is widely available. It does have some shortcomings comparing to Pi 4: 
+1. Lower speed, e.g. it takes 30s to plate solve an image vs 22s on RPi4
+2. It only has USB2 and no USB3, but performance degradation was not noticeable even for 26MB IMX571 mono chip
+3. Network is only 100MB and not 1GB, but performance degradation was not noticeable while using VNC
+4. 
