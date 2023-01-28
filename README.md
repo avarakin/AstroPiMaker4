@@ -87,16 +87,47 @@ Once Pi is up, you should be able to see it as RPI in the list of available Acce
 
 # Installation for x86 PC
 Install any flavor of Ubuntu you like and then install script and rest of software:
-
+```
 sudo apt update
 sudo apt install -y git make
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 make pc
-
+```
 # Installation for Libre Computer Le Potato
 Libre Computer Le Potato is a low cost ($35 as of January 2023) Raspberry Pi clone, which is widely available. It does have some shortcomings comparing to Pi 4: 
 1. Lower speed, e.g. it takes 30s to plate solve an image vs 22s on RPi4
 2. It only has USB2 and no USB3, but performance degradation was not noticeable even for 26MB IMX571 mono chip
 3. Network is only 100MB and not 1GB, but performance degradation was not noticeable while using VNC
-4. 
+4. Even though Wifi is missing, it can be added using a USB dongle, which also has an advantage of having an external antenna
+5. Missing Bluetooth is not a big loss for this use case
+6. Even thouhg this computer comes with only 2GB or RAM, it can still work with 26MB IMX571 mono chip by setting up swap space. No performance degradation was observed due to swapping
+
+
+## Installation steps
+Even though you can use desktop version of Le Potato image as a starting point, it it not recommended because Gnome based Ubuntu desktop is resource intensive and may cause periodic freezing. Furthermore, Ubuntu desktop version comes with software which is redundant for the given use case. The script installs Mate desktop which is very light weight
+
+1. Download base version of Ubuntu:
+https://distro.libre.computer/ci/ubuntu/22.04/ubuntu-22.04.1-preinstalled-server-arm64%2Baml-s905x-cc.img.xz
+2. Burn it on SD card, insert it into the board and power it up
+3. Once computer is up, you need to create your user:
+```
+adduser YOUR_USERNAME
+apt install sudo
+adduser YOUR_USERNAME sudo
+
+```
+4. Install base software, script and run installer
+```
+su YOUR_USERNAME
+sudo apt update
+sudo apt upgrade
+sudo apt install -y git make vim 
+git clone https://github.com/avarakin/AstroPiMaker4.git
+cd AstroPiMaker4
+make le_potato
+```
+5. Change hostname in /etc/hostname
+
+
+
