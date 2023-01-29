@@ -294,6 +294,13 @@ swap:
 	sudo swapon /swap/swapfile
 	sudo sh -c "echo '/swap/swapfile swap swap defaults 0 0'  >> /etc/fstab"
 
+swap_ext4:
+	sudo mkdir /swap
+	sudo fallocate -l 2G /swap/swapfile
+	sudo chmod 0600 /swap/swapfile
+	sudo mkswap /swap/swapfile
+	sudo swapon /swap/swapfile
+	sudo sh -c "echo '/swap/swapfile swap swap defaults 0 0'  >> /etc/fstab"
 
 libraw:
 	sudo apt -y install git build-essential autoconf libtool
