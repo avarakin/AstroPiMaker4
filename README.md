@@ -129,3 +129,15 @@ cd AstroPiMaker4
 make le_potato
 ```
 5. Change hostname in /etc/hostname
+
+
+# Installation for OrangePi 5
+Install server image of Jammy
+User is root password orangepi
+3. Once computer is up, you need to create your user:
+```
+adduser YOUR_USERNAME
+adduser YOUR_USERNAME sudo
+git clone https://github.com/avarakin/AstroPiMaker4.git
+```
+
