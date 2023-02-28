@@ -2,6 +2,7 @@ pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart p
 
 le_potato: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc swap
 
+opi5: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc
 
 x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup vnc syncthing astap_x86
 #astap
@@ -224,7 +225,7 @@ upgrade_vnc:
 	make realvnc
 
 tightvnc:
-	sudo apt install tightvncserver
+	sudo apt install tightvncserver xfonts-base xfonts-misc  xfonts-75dpi  xfonts-100dpi
 	tightvncserver
 	sudo sh -c "echo '#!/bin/sh -e' > /etc/rc.local"
 	sudo sh -c "echo 'sudo -u $$USER tightvncserver :1 -geometry 1920x1080  -depth 24' >> /etc/rc.local"
