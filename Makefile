@@ -77,7 +77,7 @@ speedup :
 
 
 mate-desktop :
-	sudo apt -y install mate-desktop-environment lightdm
+	sudo apt -y install ubuntu-mate-desktop lightdm
 
 
 gnome-desktop :
