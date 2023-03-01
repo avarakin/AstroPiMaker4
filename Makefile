@@ -64,7 +64,7 @@ display :
 	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
 
 xfce :
-	sudo sudo apt install -y xfce-goodies indicator-multiload
+	sudo sudo apt install -y xfce4-goodies indicator-multiload
 
 
 lxde-desktop :
