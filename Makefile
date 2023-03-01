@@ -2,7 +2,7 @@ pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart p
 
 le_potato: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc swap
 
-opi5: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc
+opi5: update xfce utils indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc
 
 x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup vnc syncthing astap_x86
 #astap
@@ -62,6 +62,9 @@ display :
 	sudo sh -c "echo 'hdmi_group=2' >> /boot/firmware/usercfg.txt"
 	sudo sh -c "echo 'hdmi_mode=82' >> /boot/firmware/usercfg.txt"
 	sudo sh -c "echo 'disable_overscan=1' >> /boot/firmware/usercfg.txt"
+
+xfce :
+	sudo sudo apt install -y xfce-goodies indicator-multiload
 
 
 lxde-desktop :
