@@ -181,11 +181,11 @@ astap_x86:
 
 
 astap:
-	wget https://sourceforge.net/projects/astap-program/files/star_databases/g17_star_database_mag17_astap.deb
-	sudo dpkg -i g17_star_database_mag17_astap.deb
-	wget https://sourceforge.net/projects/astap-program/files/linux_installer/astap_armhf.deb
-	sudo dpkg -i astap_armhf.deb
-	rm astap_armhf.deb  g17_star_database_mag17_astap.deb
+	wget https://master.dl.sourceforge.net/project/astap-program/star_databases/d50_star_database.deb
+	sudo dpkg -i d50_star_database.deb
+	wget https://versaweb.dl.sourceforge.net/project/astap-program/linux_installer/astap_arm64.deb
+	sudo dpkg -i astap_arm64.deb
+	rm astap_arm64.deb  d50_star_database.deb
 
 groups :
 	sudo usermod -a -G dialout $(USER)
