@@ -2,7 +2,7 @@ pi4: tz update utils speedup display mate-desktop indi kstars ccdciel skychart p
 
 le_potato: update utils mate-desktop indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing autostart tightvnc swap
 
-opi5: tz update xfce utils indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing tightvnc groups wap arduino astap
+opi5: tz update xfce utils indi kstars ccdciel skychart phd groups astrometry sample_startup syncthing tightvnc groups arduino astap wap
 
 x86: update utils groups indi kstars ccdciel skychart phd astrometry sample_startup vnc syncthing astap_x86
 #astap
@@ -148,7 +148,6 @@ wap :
 	sudo systemctl enable create_ap
 	sudo systemctl start create_ap
 	sudo systemctl status create_ap
-	echo It would be a good idea to reboot now!
 
 auto_login:
 	sudo sh -c "echo '[SeatDefaults]' > /etc/lightdm/lightdm.conf"
