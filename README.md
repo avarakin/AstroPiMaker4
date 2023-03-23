@@ -28,10 +28,8 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 3. Sets up vnc to be started automatically
 4. Configures screen to be 1920x1080 for headless operation
 5. Miscellaneous software
-* Joplin notes app (broken under 20.04)
 * Syncthing for syncing images into processing PC
 * Arduino IDE 
-* Latest Libraw with Canon CR3 support. At this point, only CCDCiel is working with this library, Ekos crashes with it
 6. Fully headless operation
 
 
