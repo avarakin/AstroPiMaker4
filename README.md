@@ -143,5 +143,6 @@ su YOUR_USERNAME
 cd
 git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
+make opi5
 ```
 
