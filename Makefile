@@ -281,11 +281,11 @@ joplin:
 	sudo ln -s ~/.joplin-bin/bin/joplin /usr/bin/joplin
 
 arduino:
-	wget https://downloads.arduino.cc/arduino-1.8.12-linuxarm.tar.xz
-	xz -d arduino-1.8.12-linuxarm.tar.xz
-	tar xvf arduino-1.8.12-linuxarm.tar
-	sudo mv arduino-1.8.12 /opt
-	sudo /opt/arduino-1.8.12/install.sh
+	wget https://downloads.arduino.cc/arduino-1.8.19-linuxaarch64.tar.xz
+	xz -d arduino-1.8.19-linuxaarch64.tar.xz
+	tar xvf arduino-1.8.19-linuxaarch64.tar
+	sudo arduino-1.8.19/install.sh
+	rm -rf arduino-1.8.19/
 
 
 swap:
