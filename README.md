@@ -2,7 +2,9 @@
 
 This project contains instructions and Makefile for setting up a portable Astrophotography computer.
 
-It can be used for setting different computers:  Orange Pi 5, Raspberry Pi, Libre Computers Le Potato and a regular x86 PC.
+It can be used for setting up different computers:  Orange Pi 5, Raspberry Pi, Libre Computers Le Potato and a regular x86 PC.
+
+At this point in time (March 2023) it is strongly recommended using Orange Pi 5: it costs less than Raspberry Pi 4, has 4GB of memory in minimal configuration and much faster CPU. 
 
 Why use makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
 
@@ -18,6 +20,7 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 * Kstars
 * PHD2
 * CCDCiel
+* PHD Log Viewer
 * Skychart
 * Astrometry with sextractor
 * ASTAP plate solver, which is much faster than astrometry
@@ -30,6 +33,35 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 * Arduino IDE 
 * Latest Libraw with Canon CR3 support. At this point, only CCDCiel is working with this library, Ekos crashes with it
 6. Fully headless operation
+
+
+# Installation for OrangePi 5
+
+1. Install Jammy (22.04) Xfce Desktop image from Orange Pi website
+2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line).
+```
+sudo bash
+adduser YOUR_USERNAME
+adduser YOUR_USERNAME sudo
+su YOUR_USERNAME
+cd
+git clone https://github.com/avarakin/AstroPiMaker4.git
+cd AstroPiMaker4
+make opi5
+```
+3. Reboot
+4. Connect to Pi using VNC client, keep in mind that you have to use display :1, e.g. enter  orangepi5.lan:1 as server address.
+
+**Notes** 
+1. Alternatively, you can install everything headlessly: just ssh into the Pi: 
+```
+ssh orangepi@orangepi5.lan
+```
+2. During update, there will be a question asked about what to do about configuration file '/etc/issue'. You can just hit enter on it, and it will keep the existing file, or you can enter 'Y' so the file gets updates with the content from the repository so in future you will never have to deal with it
+
+
+
+
 
 # Installation for Raspberry Pi
 
@@ -133,30 +165,5 @@ cd AstroPiMaker4
 make le_potato
 ```
 5. Change hostname in /etc/hostname
-
-
-# Installation for OrangePi 5
-
-1. Install Jammy (22.04) Xfce Desktop image from Orange Pi website
-2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line).
-```
-sudo bash
-adduser YOUR_USERNAME
-adduser YOUR_USERNAME sudo
-su YOUR_USERNAME
-cd
-git clone https://github.com/avarakin/AstroPiMaker4.git
-cd AstroPiMaker4
-make opi5
-```
-3. Reboot
-4. Connect to Pi using VNC client, keep in mind that you have to use display :1, e.g. enter  orangepi5.lan:1 as server address.
-
-**Notes** 
-1. Alternatively, you can install everything headlessly: just ssh into the Pi: 
-```
-ssh orangepi@orangepi5.lan
-```
-2. During update, there will be a question asked about what to do about configuration file '/etc/issue'. You can just hit enter on it, and it will keep the existing file, or you can enter 'Y' so the file gets updates with the content from the repository so in future you will never have to deal with it
 
 
