@@ -1,8 +1,11 @@
 # Introduction
 
 This project contains instructions and Makefile for setting up a portable Astrophotography computer.
+
 It can be used for setting different computers:  Orange Pi 5, Raspberry Pi, Libre Computers Le Potato and a regular x86 PC.
+
 Why use makefile as opposed to shell script? Because make stops execution in case of failures and can be invoked for the whole installation or for a part of it.
+
 Why not use Astroberry? Because you want to know what exactly is intalled or you want to customize installation or you just don't trust downloading random images from the internet
 
 # Warning
