@@ -149,5 +149,14 @@ git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 make opi5
 ```
-**Note: Alternatively, you can just ssh into ssh orangepi@orangepi5.lan
+3. Reboot
+4. Connect to Pi using VNC client, keep in mind that you have to use display :1, e.g. enter  orangepi5.lan:1 as server address.
+
+**Notes** 
+1. Alternatively, you can install everything headlessly: just ssh into the Pi: 
+```
+ssh orangepi@orangepi5.lan
+```
+2. During update, there will be a question asked about what to do about configuration file '/etc/issue'. You can just hit enter on it, and it will keep the existing file, or you can enter 'Y' so the file gets updates with the content from the repository so in future you will never have to deal with it
+
 
