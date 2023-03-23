@@ -141,6 +141,7 @@ wap :
 	sudo apt -y install hostapd dnsmasq make
 	git clone https://github.com/oblique/create_ap
 	cd create_ap && sudo make install
+	rm -rf create_ap
 	#configure access point id and password
 	sudo sed -i.bak 's/SSID=MyAccessPoint/SSID=RPI/'  /etc/create_ap.conf 
 	sudo sed -i.bak 's/PASSPHRASE=12345678/PASSPHRASE=password/'  /etc/create_ap.conf 
@@ -286,6 +287,7 @@ arduino:
 	tar xvf arduino-1.8.19-linuxaarch64.tar
 	sudo arduino-1.8.19/install.sh
 	rm -rf arduino-1.8.19/
+	rm arduino-1.8.19-linuxaarch64.tar
 
 
 swap:
