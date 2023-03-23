@@ -132,12 +132,16 @@ make le_potato
 
 
 # Installation for OrangePi 5
-Install server image of Jammy
-User is root password orangepi
-3. Once computer is up, you need to create your user:
+
+1. Install Jammy (22.04) Xfce Desktop image from Orange Pi website
+2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line):
 ```
+sudo bash
 adduser YOUR_USERNAME
 adduser YOUR_USERNAME sudo
+su YOUR_USERNAME
+cd
 git clone https://github.com/avarakin/AstroPiMaker4.git
+cd AstroPiMaker4
 ```
 
