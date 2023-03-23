@@ -228,7 +228,7 @@ upgrade_vnc:
 	make realvnc
 
 tightvnc:
-	sudo apt install tightvncserver xfonts-base xfonts-misc  xfonts-75dpi  xfonts-100dpi
+	sudo apt install tightvncserver
 	tightvncserver
 	sudo sh -c "echo '#!/bin/sh -e' > /etc/rc.local"
 	sudo sh -c "echo 'sudo -u $$USER tightvncserver :1 -geometry 1920x1080  -depth 24' >> /etc/rc.local"
