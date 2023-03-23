@@ -138,7 +138,7 @@ make le_potato
 # Installation for OrangePi 5
 
 1. Install Jammy (22.04) Xfce Desktop image from Orange Pi website
-2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line):
+2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line).
 ```
 sudo bash
 adduser YOUR_USERNAME
@@ -149,4 +149,5 @@ git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 make opi5
 ```
+**Note: Alternatively, you can just ssh into ssh orangepi@orangepi5.lan
 
