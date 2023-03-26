@@ -285,9 +285,10 @@ arduino:
 	wget https://downloads.arduino.cc/arduino-1.8.19-linuxaarch64.tar.xz
 	xz -d arduino-1.8.19-linuxaarch64.tar.xz
 	tar xvf arduino-1.8.19-linuxaarch64.tar
-	sudo arduino-1.8.19/install.sh
-	rm -rf arduino-1.8.19/
+	sudo mv arduino-1.8.19 /opt
+	sudo /opt/arduino-1.8.19/install.sh
 	rm arduino-1.8.19-linuxaarch64.tar
+
 
 
 swap:
