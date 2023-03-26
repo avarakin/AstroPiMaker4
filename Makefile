@@ -87,6 +87,7 @@ gnome-desktop :
 	sudo apt -y install lightdm gnome-tweaks gnome-shell-extension-dash-to-panel gnome-system-monitor gnome-shell-extension-system-monitor gnome-session
 
 indi :
+	sudo apt -y remove brltty
 	sudo apt-add-repository -y ppa:mutlaqja/ppa
 	sudo apt update
 	sudo apt -y install indi-full
