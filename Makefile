@@ -138,8 +138,17 @@ dnsmasq :
 	sudo sh -c "echo  '127.0.0.1 ubuntu' >> /etc/hosts"
 	sudo apt -y install dnsmasq
 
+gps:
+	sudo apt install gpsd
+	sudo systemctl status gpsd
+	sudo systemctl start gpsd
+	sudo systemctl enable gpsd
+	sudo systemctl status gpsd
+
+
+
 wap :
-	sudo apt -y install hostapd dnsmasq make
+	sudo apt -y install hostapd dnsmasq make linux-firmware
 	git clone https://github.com/oblique/create_ap
 	cd create_ap && sudo make install
 	rm -rf create_ap
