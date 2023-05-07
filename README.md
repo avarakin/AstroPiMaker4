@@ -33,7 +33,7 @@ In case if you don't have experience with Linux, it is suggested to install Astr
 6. Fully headless operation
 
 
-# Installation for OrangePi 5
+# Installation on OrangePi 5
 
 1. Install Jammy (22.04) Xfce Desktop image from Orange Pi website
 2. Power on the Pi, once in Xfce desktop, open terminal and run the commands as below (password is orangepi on the 1st line).
@@ -61,7 +61,7 @@ ssh orangepi@orangepi5.lan
 
 
 
-# Installation for Raspberry Pi
+# Installation on Raspberry Pi
 
 1. Downlaod 32 bit image of 20.04 from page:
 
@@ -128,7 +128,7 @@ git clone https://github.com/avarakin/AstroPiMaker4.git
 cd AstroPiMaker4
 make pc
 ```
-# Installation for Libre Computer Le Potato
+# Installation on Libre Computer Le Potato
 Libre Computer Le Potato is a low cost ($35 as of January 2023) Raspberry Pi clone, which is widely available. It does have some shortcomings comparing to Pi 4: 
 1. Lower speed, e.g. it takes 30s to plate solve an image vs 22s on RPi4
 2. It only has USB2 and no USB3, but performance degradation was not noticeable even for 26MB IMX571 mono chip
